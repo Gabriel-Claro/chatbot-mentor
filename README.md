@@ -1,46 +1,87 @@
-#  GeoAI Mentor
+# 🌎🤖 GeoAI Mentor
 
-Projeto desenvolvido durante a formação **Especialista em IA** da Alura.
+Chatbot desenvolvido em **Python** utilizando **LangChain** e a **API da OpenAI**, com gerenciamento de histórico para manter o contexto entre diferentes mensagens de uma mesma sessão.
 
-O objetivo é criar um chatbot utilizando **Python**, **LangChain** e a **API da OpenAI**, capaz de responder perguntas mantendo o contexto da conversa por meio de memória de sessão.
+O projeto foi desenvolvido durante o **Checkpoint Especialista em IA – Nível 1**, da Alura, como aplicação prática dos conceitos estudados.
 
-## Tecnologias
+---
+
+## 🎯 Objetivo
+
+Criar um assistente de Inteligência Artificial especializado em orientar geocientistas interessados em migrar para a área de Ciência de Dados.
+
+O chatbot utiliza um prompt de sistema para definir seu comportamento e mantém o histórico da conversa, permitindo que perguntas posteriores sejam respondidas considerando o contexto das mensagens anteriores.
+
+---
+
+## ⚙️ Como funciona
+
+O fluxo principal da aplicação é:
+
+`Pergunta → Prompt → Histórico da sessão → Modelo OpenAI → Parser → Resposta`
+
+A aplicação utiliza uma `Chain` do LangChain composta por:
+
+- `ChatPromptTemplate`
+- `ChatOpenAI`
+- `StrOutputParser`
+
+O histórico das conversas é armazenado em memória utilizando:
+
+- `InMemoryChatMessageHistory`
+- `RunnableWithMessageHistory`
+
+Cada conversa é identificada por um `session_id`, permitindo recuperar o histórico correspondente durante a execução.
+
+---
+
+## 🛠️ Tecnologias utilizadas
 
 - Python
 - LangChain
-- OpenAI
+- LangChain OpenAI
+- OpenAI API
 - python-dotenv
 
-## Como executar
+---
 
-1. Clone este repositório.
-2. Crie e ative um ambiente virtual.
-3. Instale as dependências:
+## 🧠 Conceitos praticados
 
-```bash
-pip install -r requirements.txt
-```
+Durante o desenvolvimento foram aplicados conceitos como:
 
-4. Crie um arquivo `.env` na raiz do projeto:
+- Integração com modelos da OpenAI
+- Prompt Engineering
+- ChatPromptTemplate
+- Chains com LangChain
+- Output Parsers
+- Memória de conversação
+- Gerenciamento de sessões
+- Variáveis de ambiente
+- Gerenciamento seguro de chaves de API
+
+---
+
+## 💬 Exemplo de interação
+
+O projeto utiliza perguntas sequenciais como:
+
+**Pergunta 1:**
+
+> Eu sou geofísico e quero migrar para a área de dados. Qual linguagem de programação devo aprender primeiro?
+
+**Pergunta 2:**
+
+> E que tipo de projeto de portfólio eu poderia criar usando essa linguagem?
+
+A segunda pergunta utiliza o histórico da mesma sessão, permitindo que o modelo considere o contexto estabelecido anteriormente.
+
+---
+
+## 📂 Estrutura do projeto
 
 ```text
-OPENAI_API_KEY="SUA_CHAVE"
-```
-
-5. Execute o projeto:
-
-```bash
-python chatbot_mentor.py
-```
-
-## O que foi praticado
-
-- Uso da API da OpenAI
-- Criação de prompts com LangChain
-- Organização de uma Chain
-- Memória de conversa utilizando `RunnableWithMessageHistory`
-- Gerenciamento seguro da chave da API com `.env`
-
-## Observação
-
-Para executar o chatbot é necessário possuir uma chave da OpenAI com créditos disponíveis. Caso contrário, a API retornará o erro `429 - insufficient_quota`.
+.
+├── chatbot_mentor.py
+├── requirements.txt
+├── .gitignore
+└── README.md
